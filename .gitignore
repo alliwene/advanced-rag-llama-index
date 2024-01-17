@@ -2,3 +2,7 @@
 *.sqlite
 __pycache__
 .streamlit
+
+# merging_index
+# sentence_index
+*_index/
