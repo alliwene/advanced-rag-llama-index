@@ -3,6 +3,5 @@
 __pycache__
 .streamlit
 
-# merging_index
-# sentence_index
 *_index/
+*_index_*/
