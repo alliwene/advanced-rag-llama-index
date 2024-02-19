@@ -7,15 +7,15 @@ import nest_asyncio
 from trulens_eval import Feedback, TruLlama, OpenAI
 from trulens_eval.feedback import Groundedness
 
-from llama_index import ServiceContext, VectorStoreIndex, StorageContext
-from llama_index.node_parser import SentenceWindowNodeParser
-from llama_index.indices.postprocessor import MetadataReplacementPostProcessor
-from llama_index.indices.postprocessor import SentenceTransformerRerank
-from llama_index import load_index_from_storage
-from llama_index.node_parser import HierarchicalNodeParser
-from llama_index.node_parser import get_leaf_nodes
-from llama_index.retrievers import AutoMergingRetriever
-from llama_index.query_engine import RetrieverQueryEngine
+from llama_index.core import ServiceContext, VectorStoreIndex, StorageContext
+from llama_index.core.node_parser import SentenceWindowNodeParser
+from llama_index.core.postprocessor import MetadataReplacementPostProcessor
+from llama_index.core.postprocessor import SentenceTransformerRerank
+from llama_index.core import load_index_from_storage
+from llama_index.core.node_parser import HierarchicalNodeParser
+from llama_index.core.node_parser import get_leaf_nodes
+from llama_index.core.retrievers import AutoMergingRetriever
+from llama_index.core.query_engine import RetrieverQueryEngine
 
 nest_asyncio.apply()
 
@@ -104,7 +104,7 @@ def get_sentence_window_query_engine(
     # define postprocessors
     postproc = MetadataReplacementPostProcessor(target_metadata_key="window")
     rerank = SentenceTransformerRerank(
-        top_n=rerank_top_n, model="BAAI/bge-reranker-base"
+        top_n=rerank_top_n, model="cross-encoder/ms-marco-TinyBERT-L-2-v2"
     )
 
     sentence_window_engine = sentence_index.as_query_engine(
